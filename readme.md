@@ -1,3 +1,5 @@
+<img align="left" width="80px" src="https://github.com/f14-bertolotti/jet/blob/main/images/jet.png?raw=true" />
+
 # Jet
 
 **Note:** Jet is currently in its early stages of development and may be highly unstable.
