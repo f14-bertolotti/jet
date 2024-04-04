@@ -2,11 +2,7 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 import seaborn, pandas, click
 
-
 @click.group(invoke_without_command=True, context_settings={'show_default': True})
-def cli(): pass
-
-@cli.group(invoke_without_command=True, context_settings={'show_default': True})
 @click.option("--input-path"  , "input_paths" , type=click.Path() , default=["data.jsonl"] , multiple = True, help="jsonl input data file.")
 @click.option("--x"           , "xs"          , type=str          , default=["x"]        , multiple = True, help="X-axis values.")
 @click.option("--y"           , "ys"          , type=str          , default=["y"]        , multiple = True, help="Y-axis values.")
@@ -36,7 +32,5 @@ def line(options):
         )
     if options.show: plt.show()
 
-
-
 if __name__ == "__main__":
-    cli()
+    jet()
