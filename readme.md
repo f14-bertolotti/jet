@@ -34,13 +34,14 @@ The command-line interface is generated using [Click](https://click.palletsproje
 - The following command displays a line plot of the `loss` value against the `step`:
   
   ```bash
-  python3 jet.py --input-path "data.jsonl" --x "step" --y "loss" --show True line
+  python3 jet.py line --input-path data/data.jsonl --x step --y loss jet plot --show True
   ```
 
 - The following command displays a line plot of the `loss` value against the `step` and `reward` against the `step`:
   
   ```bash
-  python3 jet.py --input-path "data.jsonl" --x "step" --y "loss" \
-                 --input-path "data.jsonl" --x "step" --y "reward" \
-                 --show True line
+    python3 jet.py \
+        jet line --input-path data/data.jsonl --x step --y loss \
+        jet line --input-path data/data.jsonl --x step --y reward \
+        jet plot --show True
   ```
