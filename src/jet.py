@@ -2,11 +2,14 @@ from collections import namedtuple
 import matplotlib.pyplot as plt
 from commands import scatter, line, palette, plot, mod
 import click
-   
-@click.group(invoke_without_command=True)
+
+@click.group()
+def jet(): pass
+
+@jet.group(invoke_without_command=True)
 @click.option("--shape", "shape", type=(int, int), default=(1, 1), help="grid plot size")
 @click.pass_context
-def jet(context, shape):
+def init(context, shape):
     if context.obj is not None: return
 
     fig, axs = plt.subplots(nrows=shape[0], ncols=shape[1])
@@ -19,6 +22,8 @@ def jet(context, shape):
         axs = axs
     )
 
+jet     .add_command(jet)
+init    .add_command(jet)
 jet     .add_command(scatter)
 jet     .add_command(line)
 jet     .add_command(mod)
