@@ -1,3 +1,6 @@
 venv
+build
+jet.egg-info
 __pycache__
+result
 .pyc

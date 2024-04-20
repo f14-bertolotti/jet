@@ -5,6 +5,7 @@ import click
 default_options = chain(
     click.option("--input-path" , "input_paths" , type = click.Path() , default = ["data.jsonl"] , help = "jsonl input data files.", multiple = True),
     click.option("--nrows"      , "nrows"       , type = int          , default = None           , help = "The number of lines from the line-delimited jsonfile that has to be read."),
+    click.option("--samples"    , "samples"     , type = int          , default = None           , help = "The number of lines in the final data."),
     click.option("--label"      , "label"       , type = str          , default = "0"            , help = "label for the legend."),
     click.option("--color"      , "color"       , type = Color()      , default = None           , help = "plot color."),
     click.option("--x"          , "x"           , type = str          , default = "x"            , help = "X-axis values."),

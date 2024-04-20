@@ -10,38 +10,56 @@ Jet is a simple command-line utility designed to generate plots from JSON-line f
 
 ## Requirements
 
-Jet relies on the following libraries:
-- Matplotlib
-- Seaborn
-- Pandas
-- Click
+- `python3`
+- `make`
 
-## Usage
+## Installation
 
-Data files should be formatted with a single JSON object per line, as shown in the example below:
-
-```json
-{"step": 0, "loss": -0.03763704001903534, "reward": 0.04284941032528877}
-{"step": 1, "loss": -0.02104765921831131, "reward": 0.02155069075524807}
-{"step": 2, "loss": -0.00058268022257834, "reward": -0.0063234698027372}
-{"step": 3, "loss": 0.014676971361041069, "reward": -0.0204243808984756}
+```bash
+    make venv/bin/activate
 ```
+and put the jet repo inside `$PATH`
 
-The command-line interface is generated using [Click](https://click.palletsprojects.com/en/8.1.x/), so you can explore it using `--help`.
-
-### Example
+## Example
 
 - The following command displays a line plot of the `loss` value against the `step`:
   
   ```bash
-  python3 jet.py line --input-path data/data.jsonl --x step --y loss jet plot --show True
+  jet line --input-path data/data.jsonl --x step --y loss jet plot --show True
   ```
 
 - The following command displays a line plot of the `loss` value against the `step` and `reward` against the `step`:
   
   ```bash
-    python3 jet.py \
-        jet line --input-path data/data.jsonl --x step --y loss \
-        jet line --input-path data/data.jsonl --x step --y reward \
-        jet plot --show True
+    jet init --shape 1 2 \
+		jet line \
+			--ax 0 0 \
+			--input-path data/data0.jsonl \
+			--input-path data/data1.jsonl \
+			--x step \
+			--y message/reward \
+			--label "reward" \
+		jet scatter \
+			--ax 0 1 \
+			--input-path data/data2.jsonl \
+			--x step \
+			--y message/loss \
+			--label "loss" \
+		jet mod \
+			--right-spine False \
+			--top-spine False \
+			--y-label "reward" \
+			--x-label "step" \
+			--ax 0 0 \
+		jet mod \
+			--right-spine False \
+			--top-spine False \
+			--y-label "reward" \
+			--x-label "step" \
+			--ax 0 0 \
+        jet plot --show False --output-path images/test.png
   ```
+
+The result is the following
+
+<img align="left" width="480px" src="https://github.com/f14-bertolotti/jet/blob/main/images/test.png?raw=true" />

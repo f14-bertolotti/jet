@@ -2,6 +2,7 @@ from ast import literal_eval
 import click
 
 class Color(click.ParamType):
+    name="color"
     def convert(self, value, param, ctx):
         color = literal_eval(value)
         assert type(color) == tuple
