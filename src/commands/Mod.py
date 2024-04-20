@@ -9,9 +9,11 @@ from utils import set_spine_visibility
 @click.option("--bottom-spine" , "bottom_spine" , type = bool       , default = True   , help = "Controls the visibility of the bottom spine.")
 @click.option("--y-label"      , "ylabel"       , type = str        , default = None   , help = "Y axis label name.")
 @click.option("--x-label"      , "xlabel"       , type = str        , default = None   , help = "X axis label name.")
+@click.option("--y-scale"      , "yscale"       , type = str        , default = None   , help = "Y axis scale. e.g. linear, log, symlog, logit")
+@click.option("--x-scale"      , "xscale"       , type = str        , default = None   , help = "X axis scale. e.g. linear, log, symlog, logit")
 @click.option("--title"        , "title"        , type = str        , default = ""     , help = "Plot title.")
 @click.pass_obj
-def mod(plotobj, title, ylabel, xlabel, left_spine, right_spine, top_spine, bottom_spine, ax):
+def mod(plotobj, title, ylabel, xlabel, yscale, xscale, left_spine, right_spine, top_spine, bottom_spine, ax):
     set_spine_visibility(
         ax = plotobj.axs[ax[0]][ax[1]],
         left_spine   = left_spine,
@@ -21,5 +23,7 @@ def mod(plotobj, title, ylabel, xlabel, left_spine, right_spine, top_spine, bott
     )
     if ylabel is not None: plotobj.axs[ax[0]][ax[1]].set_ylabel(ylabel)
     if xlabel is not None: plotobj.axs[ax[0]][ax[1]].set_xlabel(xlabel)
+    if yscale is not None: plotobj.axs[ax[0]][ax[1]].set_ylabel(yscale)
+    if xscale is not None: plotobj.axs[ax[0]][ax[1]].set_xlabel(xscale)
     plotobj.axs[ax[0]][ax[1]].set_title(title)
 
