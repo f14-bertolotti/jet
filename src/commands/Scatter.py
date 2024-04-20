@@ -1,4 +1,4 @@
-import seaborn, pandas, click, os
+import seaborn, click, os
 from commands import default_options
 from utils    import load_data
 
@@ -8,16 +8,16 @@ from utils    import load_data
 def scatter(
         plotobj, 
         input_paths, 
-        nrows, 
+        samples,
         label, 
         color, 
         x, 
         y,
         ax
     ):
-    data = load_data(paths = input_paths, nrows = nrows)
+    data = load_data(paths = input_paths, samples = samples)
     seaborn.scatterplot(
-        data  = pandas.json_normalize(data, sep="/")[[x, y]],
+        data  = data,
         x     = x,
         y     = y,
         color = color,
