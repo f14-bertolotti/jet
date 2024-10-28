@@ -27,6 +27,6 @@ def line(
         color  = color,
         label  = label if label else os.path.basename(input_paths[0]),
         legend = False if legend == "none" else legend,
-        ax     = plotobj.axs[ax[0]][ax[1]]
+        ax     = plotobj.axs[ax[0]][ax[1]],
     )
     

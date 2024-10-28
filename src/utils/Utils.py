@@ -20,7 +20,7 @@ def load_data(paths, samples=None, where=tuple()):
 
     # keep only sample rows from each data file
     for i in range(len(datas)):
-        datas[i] = datas[i][::(len(datas[i])//samples) if samples else 1]
+        datas[i] = datas[i][::(max(1,len(datas[i])//samples)) if samples else 1]
 
     # load in pandas
     return pandas.json_normalize([line for data in datas for line in data], sep="/")
