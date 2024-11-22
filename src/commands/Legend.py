@@ -1,9 +1,8 @@
-from utils import Color
 import matplotlib.pyplot as plt
 import click
 
 @click.group(invoke_without_command=True)
-@click.option("--line", "lines", type=(str,Color(),float), default=[], multiple=True, help="add line to legend in the form of (label,color,width)")
+@click.option("--line", "lines", type=(str,float,float,float,float), default=[], multiple=True, help="add line to legend in the form of (label,color,width)")
 @click.option("--frameon", "frameon", type=bool, default=False, help="True if the legend frame should be showed")
 @click.pass_obj
 def legend(plotobj, lines,frameon):
