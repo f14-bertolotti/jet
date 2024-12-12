@@ -10,6 +10,7 @@ def line(
         plotobj, 
         input_paths, 
         samples,
+        dataslice,
         label, 
         color, 
         linewidth,
@@ -20,7 +21,7 @@ def line(
         legend
     ): 
 
-    data = load_data(paths = input_paths, samples=samples, where=where)
+    data = load_data(paths=input_paths, samples=samples, where=where, dataslice=dataslice)
     seaborn.lineplot(
         data   = data,
         x      = x,

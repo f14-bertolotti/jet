@@ -12,8 +12,11 @@ def parse_file(path):
     with open(path, "r") as file:
         return [json.loads(line) for line in file]
 
-def load_data(paths, samples=None, where=tuple()):
+def load_data(paths, samples=None, where=tuple(), dataslice=(None,None,None)):
     datas = [parse_file(path) for path in paths]
+
+    # slice data
+    datas = [data[slice(*dataslice)] for data in datas]
 
     # filter on conditions
     datas = [[line for line in data if all([cond(line) for cond in where])] for data in datas]
