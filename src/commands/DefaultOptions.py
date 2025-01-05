@@ -14,7 +14,7 @@ default_options = chain(
     click.option("--where"      , "where"       , type = Where()             , default = []               , help = "evaluatable condition used as filter", multiple=True),
     click.option("--legend"     , "legend"      , type = str                 , default = "auto"           , help = "legend type"),
     click.option("--color"      , "color"       , type = (float,float,float) , default = None             , help = "plot color."),
-    click.option("--linewidth"  , "linewidth"   , type = float               , default = 1.0            , help = "line width."),
+    click.option("--linewidth"  , "linewidth"   , type = float               , default = 1.0              , help = "line width."),
 )
 
 

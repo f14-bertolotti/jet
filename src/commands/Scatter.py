@@ -9,6 +9,7 @@ def scatter(
         plotobj, 
         input_paths, 
         samples,
+        dataslice,
         label, 
         color, 
         linewidth,
@@ -18,7 +19,7 @@ def scatter(
         where,
         legend
     ):
-    data = load_data(paths = input_paths, samples = samples, where = where)
+    data = load_data(paths = input_paths, samples = samples, where = where, dataslice = dataslice)
     seaborn.scatterplot(
         data  = data,
         x     = x,
