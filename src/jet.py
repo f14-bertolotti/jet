@@ -22,6 +22,19 @@ def init(context, shape):
         axs = axs
     )
 
+def recursive_help(cmd, parent=None, visited=[]):
+    ctx = click.core.Context(cmd, info_name=cmd.name, parent=parent)
+    print(cmd.get_help(ctx))
+    print()
+    commands = getattr(cmd, 'commands', {})
+    for sub in commands.values():
+        if sub not in visited:
+            recursive_help(sub, ctx, visited + [cmd])
+
+@jet.command()
+def dumphelp():
+    recursive_help(jet, visited=[])
+
 jet    .add_command(jet)
 init   .add_command(jet)
 jet    .add_command(scatter)

@@ -2,6 +2,10 @@ from ast import literal_eval
 import click
 
 class Where(click.ParamType):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.name = "where"
+
     def convert(self, value, param, ctx):
         name,op,value = value.split(",")
         value = literal_eval(value)
