@@ -1,4 +1,5 @@
 import click
+import matplotlib.pyplot as plt
 from utils import set_spine_visibility
 
 @click.group(invoke_without_command=True)
@@ -13,9 +14,11 @@ from utils import set_spine_visibility
 @click.option("--x-scale"      , "xscale"       , type = str           , default = None   , help = "X axis scale. e.g. linear, log, symlog, logit")
 @click.option("--y-lim"        , "ylim"         , type = (float,float) , default = None   , help = "Y axis lim.")
 @click.option("--x-lim"        , "xlim"         , type = (float,float) , default = None   , help = "X axis lim.")
+@click.option("--y-bins"       , "ybins"        , type = int           , default = None   , help = "Y axis bins.")
+@click.option("--x-bins"       , "xbins"        , type = int           , default = None   , help = "X axis bins.")
 @click.option("--title"        , "title"        , type = str           , default = ""     , help = "Plot title.")
 @click.pass_obj
-def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, right_spine, top_spine, bottom_spine, ax):
+def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, right_spine, top_spine, bottom_spine, xbins, ybins, ax):
     set_spine_visibility(
         ax = plotobj.axs[ax[0]][ax[1]],
         left_spine   = left_spine,
@@ -29,5 +32,7 @@ def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, 
     if xlim   is not None: plotobj.axs[ax[0]][ax[1]].set_xlim  (xlim)
     if ylabel is not None: plotobj.axs[ax[0]][ax[1]].set_ylabel(ylabel)
     if xlabel is not None: plotobj.axs[ax[0]][ax[1]].set_xlabel(xlabel)
+    if xbins  is not None: plotobj.axs[ax[0]][ax[1]].xaxis.set_major_locator(plt.MaxNLocator(xbins))
+    if ybins  is not None: plotobj.axs[ax[0]][ax[1]].yaxis.set_major_locator(plt.MaxNLocator(ybins))
     plotobj.axs[ax[0]][ax[1]].set_title(title)
 

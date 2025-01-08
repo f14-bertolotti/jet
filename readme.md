@@ -141,6 +141,8 @@ Options:
 - `--y-lim <FLOAT FLOAT>`: Y axis limits
 - `--x-lim <FLOAT FLOAT>`: X axis limits
 - `--title TEXT`: Plot title
+- `--x-bins INTEGER`: Number of bins for the x-axis
+- `--y-bins INTEGER`: Number of bins for the y-axis
 
 Configure plot legends.
 
