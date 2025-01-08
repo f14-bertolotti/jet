@@ -80,6 +80,8 @@ jet init [OPTIONS] COMMAND [ARGS]...
 
 Options:
 - `--shape <INTEGER INTEGER>`: Set the grid plot size
+- `--font-size INTEGER`: Set the font size
+- `--font-family TEXT`: Set the font family
 
 Create scatter plots from data.
 
