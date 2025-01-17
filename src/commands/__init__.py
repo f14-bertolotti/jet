@@ -5,3 +5,4 @@ from commands.Palette        import palette
 from commands.Plot           import plot
 from commands.Mod            import mod
 from commands.Legend         import legend
+from commands.Reference      import reference

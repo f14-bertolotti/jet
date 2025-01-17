@@ -3,22 +3,22 @@ import matplotlib.pyplot as plt
 from utils import set_spine_visibility
 
 @click.group(invoke_without_command=True)
-@click.option("--ax"           , "ax"           , type = (int, int)    , default = (0, 0) , help = "grid indices for the plot.")
-@click.option("--left-spine"   , "left_spine"   , type = bool          , default = True   , help = "Controls the visibility of the left spine.")
-@click.option("--right-spine"  , "right_spine"  , type = bool          , default = True   , help = "Controls the visibility of the right spine.")
-@click.option("--top-spine"    , "top_spine"    , type = bool          , default = True   , help = "Controls the visibility of the top spine.")
-@click.option("--bottom-spine" , "bottom_spine" , type = bool          , default = True   , help = "Controls the visibility of the bottom spine.")
-@click.option("--y-label"      , "ylabel"       , type = str           , default = None   , help = "Y axis label name.")
-@click.option("--x-label"      , "xlabel"       , type = str           , default = None   , help = "X axis label name.")
-@click.option("--y-scale"      , "yscale"       , type = str           , default = None   , help = "Y axis scale. e.g. linear, log, symlog, logit")
-@click.option("--x-scale"      , "xscale"       , type = str           , default = None   , help = "X axis scale. e.g. linear, log, symlog, logit")
-@click.option("--y-lim"        , "ylim"         , type = (float,float) , default = None   , help = "Y axis lim.")
-@click.option("--x-lim"        , "xlim"         , type = (float,float) , default = None   , help = "X axis lim.")
-@click.option("--y-bins"       , "ybins"        , type = int           , default = None   , help = "Y axis bins.")
-@click.option("--x-bins"       , "xbins"        , type = int           , default = None   , help = "X axis bins.")
-@click.option("--title"        , "title"        , type = str           , default = ""     , help = "Plot title.")
+@click.option("--ax"           , "ax"           , type = (int, int)             , default = (0, 0)   , help = "grid indices for the plot.")
+@click.option("--left-spine"   , "left_spine"   , type = bool                   , default = True     , help = "Controls the visibility of the left spine.")
+@click.option("--right-spine"  , "right_spine"  , type = bool                   , default = True     , help = "Controls the visibility of the right spine.")
+@click.option("--top-spine"    , "top_spine"    , type = bool                   , default = True     , help = "Controls the visibility of the top spine.")
+@click.option("--bottom-spine" , "bottom_spine" , type = bool                   , default = True     , help = "Controls the visibility of the bottom spine.")
+@click.option("--y-label"      , "ylabel"       , type = str                    , default = None     , help = "Y axis label name.")
+@click.option("--x-label"      , "xlabel"       , type = str                    , default = None     , help = "X axis label name.")
+@click.option("--y-scale"      , "yscale"       , type = str                    , default = None     , help = "Y axis scale. e.g. linear, log, symlog, logit")
+@click.option("--x-scale"      , "xscale"       , type = str                    , default = None     , help = "X axis scale. e.g. linear, log, symlog, logit")
+@click.option("--y-lim"        , "ylim"         , type = (float,float)          , default = None     , help = "Y axis lim.")
+@click.option("--x-lim"        , "xlim"         , type = (float,float)          , default = None     , help = "X axis lim.")
+@click.option("--y-ticks"      , "yticks"       , type = str                    , default = "default", help = "Y axis bins.")
+@click.option("--x-ticks"      , "xticks"       , type = str                    , default = "default", help = "X axis bins.")
+@click.option("--title"        , "title"        , type = str                    , default = ""       , help = "Plot title.")
 @click.pass_obj
-def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, right_spine, top_spine, bottom_spine, xbins, ybins, ax):
+def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, right_spine, top_spine, bottom_spine, xticks, yticks, ax):
     set_spine_visibility(
         ax = plotobj.axs[ax[0]][ax[1]],
         left_spine   = left_spine,
@@ -32,7 +32,15 @@ def mod(plotobj, title, ylabel, xlabel, yscale, xscale, xlim, ylim, left_spine, 
     if xlim   is not None: plotobj.axs[ax[0]][ax[1]].set_xlim  (xlim)
     if ylabel is not None: plotobj.axs[ax[0]][ax[1]].set_ylabel(ylabel)
     if xlabel is not None: plotobj.axs[ax[0]][ax[1]].set_xlabel(xlabel)
-    if xbins  is not None: plotobj.axs[ax[0]][ax[1]].xaxis.set_major_locator(plt.MaxNLocator(xbins))
-    if ybins  is not None: plotobj.axs[ax[0]][ax[1]].yaxis.set_major_locator(plt.MaxNLocator(ybins))
+
+    match xticks:
+        case "none": plotobj.axs[ax[0]][ax[1]].set_xticks([])
+        case "default": pass
+        case _: plotobj.axs[ax[0]][ax[1]].set_xticks(list(map(float, xticks.split(","))))
+    match yticks:
+        case "none": plotobj.axs[ax[0]][ax[1]].set_yticks([])
+        case "default": pass
+        case _: plotobj.axs[ax[0]][ax[1]].set_yticks(list(map(float, yticks.split(","))))
+
     plotobj.axs[ax[0]][ax[1]].set_title(title)
 
