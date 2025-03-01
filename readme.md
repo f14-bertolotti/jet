@@ -165,6 +165,7 @@ Options:
 - `--output-path PATH`: Output plot path
 - `--figsize <FLOAT FLOAT>`: Figure size
 - `--tight BOOLEAN`: Tight layout
+- `--transparent BOOLEAN`: Transparent background
 
 Configure color palettes.
 
