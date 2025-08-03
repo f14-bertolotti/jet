@@ -1,9 +1,7 @@
 PYTHON = /usr/bin/python3
 
-venv/bin/activate: requirements.txt
-	rm -rf venv
-	${PYTHON} -m venv venv
-	venv/bin/python3 -m pip install -r requirements.txt
+install: pyproject.toml
+	uv sync
 
 images/test.png: venv/bin/activate
 		venv/bin/python3 jet/jet.py init --shape 1 2 \

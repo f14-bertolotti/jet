@@ -1,0 +1,21 @@
+# basic toml file for a Python project
+[project]
+name = "jet"
+version = "0.1.0"
+description = "A cli wrapper on matplotlib"
+authors = [
+    { name = "Francesco Bertolotti", email = "f14.bertolotti@gmail.com" }
+]
+dependencies = [
+    "matplotlib",
+    "seaborn",
+    "pandas",
+    "click",
+    "PyQt6"
+]
+
+[project.scripts]
+jet = "cli:jet"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
